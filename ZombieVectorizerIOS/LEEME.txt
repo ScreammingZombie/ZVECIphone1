@@ -1,0 +1,30 @@
+ZOMBIE VECTORIZER (iPhone / iPad)  -  By P.V.M.
+================================================
+Misma app que la de Android: convierte imágenes a vector, todo sin internet.
+Motor en Swift (port del motor probado de Android), interfaz en SwiftUI, iOS 16 o superior.
+
+1) COMPILAR (sin Mac)
+   - Subí esta carpeta a un repositorio de GitHub (de preferencia PÚBLICO: las máquinas
+     macOS son gratis en repos públicos; en privados consumen minutos más caros).
+   - Pestaña Actions > "Compilar IPA" > Run workflow (o se corre sola con cada push).
+   - Cuando termine (unos minutos) bajá el artefacto "ZombieVectorizer-ipa": adentro está
+     ZombieVectorizer.ipa SIN FIRMAR.
+   - Si falla, abrí el paso que quedó en rojo y copiame el texto del error.
+
+2) INSTALAR EN EL IPHONE (Apple ID gratis, desde Windows)
+   - Instalá iTunes y iCloud descargados de apple.com (NO los de Microsoft Store).
+   - Instalá Sideloadly (sideloadly.io).
+   - Conectá el iPhone, abrí Sideloadly, arrastrá el .ipa, poné tu Apple ID y "Start".
+   - En el iPhone: Ajustes > Privacidad y seguridad > Modo desarrollador (activar y reiniciar).
+   - Ajustes > General > VPN y administración de dispositivos > confiar en tu Apple ID.
+   - Con Apple ID gratis la app VENCE A LOS 7 DÍAS: hay que volver a instalarla igual
+     (los datos se conservan si no la borrás). Máximo 3 apps instaladas así a la vez.
+   - Alternativa: AltStore, que puede renovarla solo si la PC está prendida en la misma wifi.
+
+3) DÓNDE SE GUARDA
+   - Botón GUARDAR: app Archivos > En mi iPhone > Zombie Vectorizer.
+   - Botón COMPARTIR: menú de iOS (AirDrop, WhatsApp, "Guardar imagen" en Fotos, etc.).
+
+FUENTES: ya incluidas (ZombieVectorizer/Resources): Dark_Zombie.ttf (título) y Scary_Zombie.ttf (botones).
+FORMATOS: SVG, PDF (vectorial), PNG normal (1600 px) y PNG alta resolución (hasta 4096 px).
+HISTORIAL: las últimas 20 conversiones (mantené apretado un elemento para borrarlo).
