@@ -1,0 +1,36 @@
+name: Compilar IPA
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar XcodeGen
+        run: brew install xcodegen
+      - name: Compilar (sin firmar) y armar el .ipa
+        run: |
+          set -eo pipefail
+          SPEC=$(find . -name project.yml -not -path "./build/*" | head -n 1)
+          if [ -z "$SPEC" ]; then echo "ERROR: no encontré project.yml"; ls -la; exit 1; fi
+          echo "Proyecto en: $SPEC"
+          ROOT="$GITHUB_WORKSPACE"
+          cd "$(dirname "$SPEC")"
+          ls -la
+          xcodegen generate
+          ls -d *.xcodeproj
+          xcodebuild -project ZombieVectorizer.xcodeproj \
+            -scheme ZombieVectorizer \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/ZombieVectorizer.app Payload/
+          zip -qry "$ROOT/ZombieVectorizer.ipa" Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ZombieVectorizer-ipa
+          path: ZombieVectorizer.ipa
